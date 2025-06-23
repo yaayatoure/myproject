@@ -1,0 +1,10 @@
+# Python 
+venv/ 
+__pycache__/ 
+*.pyc 
+# Node 
+node_modules/ 
+package-lock.json   # Remove this line if you want to keep it tracked
+# IDE 
+.vscode/ 
+.idea/ 

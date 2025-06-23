@@ -1,0 +1,66 @@
+.login-container{
+  background: #2A7B9B;
+  background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(199, 87, 134, 1) 98%);
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  
+  justify-content: center;
+  align-items: center;
+  
+
+}
+.login-box {
+   gap: 16px; /* Add spacing between items */
+  background-color: white;
+  min-width: 300px;
+  width: 25%;
+  height: 70%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.login-title{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.forms{
+  background-color: white !important;
+}
+.link{
+  
+  text-decoration: none;
+  
+}
+.button{
+  display: none;
+}
+/* .links_below{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+} */
+
+.links_below {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.links_below a {
+  display: block; /* Makes links take full width */
+  width: 100%;
+  padding: 8px 0; /* Add some vertical spacing */
+}
+.login-title1{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
