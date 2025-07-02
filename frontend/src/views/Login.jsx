@@ -64,7 +64,7 @@ function Login() {
       // Only proceed if we got a token
       if (response.data.token) {
       localStorage.setItem('Token', response.data.token);
-      navigate('/');
+      navigate('/dashboard');
     }
   } catch (error) {
     console.log('Login error:', error.response?.data || error.message);

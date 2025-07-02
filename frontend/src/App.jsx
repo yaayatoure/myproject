@@ -10,9 +10,17 @@ import PasswordResetRequest from './components/PasswordResetRequest';
 import PasswordReset from './components/PasswordReset';
 import ProtectedRoute from './components/ProtectedRoutes';
 
+import ImageUpload from './views/ImageUpload';
+import ProfileService from './views/ProfileService';
+import './App.css'; // Import your CSS file for styling
+import CameraUpload from './views/CameraUpload';
+import UserGallery from './views/UserGallery';
+import Home from './views/Home'; // Import the home component
+import Search from './views/Search'; // Import the public user search component
+
 function App() {
   const location = useLocation();
-  const noNavbar = location.pathname === '/dashboard' || location.pathname === '/login'  || location.pathname === '/register'  || location.pathname.includes('password') ; // you can expand this condition later
+  const noNavbar = location.pathname === '/login' || location.pathname === '/'  || location.pathname === '/register'  || location.pathname.includes('password') ; // you can expand this condition later
   console.log('location',location);
   return (
     <>
@@ -22,9 +30,12 @@ function App() {
         <Routes>
           
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Registerpage />} />
+          
           <Route path="/request/password_reset" element={<PasswordResetRequest/>}/>
           <Route path="/password-reset/:token" element={<PasswordReset/>}/>
+          
         </Routes>
       ) : (
         // Pages with navbar
@@ -32,8 +43,12 @@ function App() {
           content={
             <Routes>
              <Route element={<ProtectedRoute/>}> 
-             
-             <Route path="/" element={<Dashboard />} />
+             <Route path="/Search" element={<Search/>}/>
+             <Route path="/dashboard" element={<Dashboard />} />
+             <Route path="/profile" element={<ProfileService />} />
+             <Route path="/Camera"  element={<ImageUpload />} />
+             <Route path="/Upload"  element={<CameraUpload />} />
+             <Route path="/Show"  element={<UserGallery />} />
              </Route>
               
               

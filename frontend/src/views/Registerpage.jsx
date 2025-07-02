@@ -134,14 +134,17 @@ function Registerpage() {
     initialValues: {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      username: '',
     },
     validationSchema: registerValidationSchema,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const response = await Axiosinstance.post('/register/', {
           email: values.email,
+          username: values.username,
           password: values.password
+          
         });
          // Show success alert
         await Swal.fire({
@@ -184,6 +187,16 @@ function Registerpage() {
         <Box className='login-title'>Register Form</Box>
         
         <form onSubmit={formik.handleSubmit}>
+        <Box>
+  <Mytextinput
+    label="Username"
+    name="username"
+    value={formik.values.username}
+    onChange={formik.handleChange}
+    error={formik.touched.username && Boolean(formik.errors.username)}
+    helperText={formik.touched.username && formik.errors.username}
+  />
+</Box>
           <Box>
             <Mytextinput
               label="Email"

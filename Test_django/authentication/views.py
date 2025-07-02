@@ -7,6 +7,18 @@ User = get_user_model()
 from rest_framework import status 
 from knox.models import AuthToken
 
+from rest_framework import generics, permissions
+from rest_framework.parsers import MultiPartParser, FormParser
+from .models import Profile
+from .serializers import ProfileSerializer
+
+from .models import UserPhoto
+from .serializers import UserPhotoSerializer
+from .serializers import PublicUserPhotoSerializer
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny
+
+
 class Loginview(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = Loginserializer
@@ -48,3 +60,60 @@ class Userview(viewsets.ModelViewSet):
         queryset=User.objects.all()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ProfileAPIView(generics.RetrieveUpdateAPIView):
+    """
+    Handle both profile retrieval and updates
+    GET /api/profile/ - Get user profile
+    PUT /api/profile/ - Update profile (supports JSON and multipart form-data)
+    PATCH /api/profile/ - Partial update
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_object(self):
+        return self.request.user.profile
+
+
+#image upload
+class PhotoUploadView(generics.CreateAPIView):
+    queryset = UserPhoto.objects.all()
+    serializer_class = UserPhotoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser]
+
+    def perform_create(self, serializer):
+        # Automatically associate photo with current user
+        
+        serializer.save(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        
+        # Custom response with more details
+        return Response({
+            'status': 'success',
+            'data': serializer.data,
+            'message': 'Photo uploaded successfully'
+        }, status=status.HTTP_201_CREATED)
+
+
+class UserPhotoListView(generics.ListAPIView):
+    serializer_class = UserPhotoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserPhoto.objects.filter(user=self.request.user).order_by('-created_at')
+
+
+class PublicUserSearchView(ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = PublicUserPhotoSerializer
+
+    def get_queryset(self):
+        query = self.request.query_params.get('query', '')
+        return UserPhoto.objects.filter(user__username__icontains=query).order_by('-created_at')

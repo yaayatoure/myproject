@@ -15,7 +15,7 @@
   background-color: white;
   min-width: 300px;
   width: 25%;
-  height: 70%;
+  height: 90%;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -63,4 +63,348 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+/* image upload css */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-picture img, .image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+/* image from camera */
+/* Camera Loading States */
+/* Base Styles */
+.camera-upload-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Messages */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.success-message {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.error-icon, .success-icon {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Camera Preview */
+.camera-preview {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.placeholder-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+/* Controls */
+.camera-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-start {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-capture {
+  background: #2196f3;
+  color: white;
+}
+
+.btn-stop {
+  background: #f44336;
+  color: white;
+}
+
+.btn-upload {
+  background: #4caf50;
+  color: white;
+  margin-top: 10px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Preview Section */
+/* Update your existing CSS with these changes */
+
+.preview-section {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers everything horizontally */
+  justify-content: center; /* This centers vertically if needed */
+  width: 100%;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  border: 2px solid #eee;
+  margin: 0 auto 15px; /* This centers the image horizontally */
+  display: block; /* Makes margin: auto work properly */
+}
+
+/* If you want to center the upload button under the image */
+.upload-btn-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* If you're using the btn-upload class for your upload button */
+.btn-upload {
+  background: #4caf50;
+  color: white;
+  margin: 15px auto 0; /* Centers the button horizontally */
+  display: block; /* Makes margin: auto work properly */
+}
+
+/* upload css */
+/* Main Container */
+.upload-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Title */
+.upload-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+/* Status Messages */
+.status-message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.status-message.success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.status-message.error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.status-icon {
+  font-size: 1.2rem;
+}
+
+/* File Input Styling */
+.file-input-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.file-input-label {
+  display: block;
+  padding: 1.2rem;
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-input-label:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.file-input-label span {
+  display: block;
+  margin-top: 0.5rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Preview Section */
+.preview-section {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.preview-section h4 {
+  color: #334155;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: block;
+  margin: 0 auto;
+}
+
+/* Upload Button */
+.upload-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.upload-btn:hover {
+  background: #2563eb;
+}
+
+.upload-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Validation Error */
+.validation-error {
+  color: #dc2626;
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .upload-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .upload-container h2 {
+    font-size: 1.5rem;
+  }
 }
