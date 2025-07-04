@@ -1,5 +1,5 @@
 from rest_framework import viewsets,permissions
-from .serializers import Loginserializer, Registerserializer
+from .serializers import Loginserializer, Registerserializer, UserWithProfileAndPhotosSerializer
 from django.contrib.auth import get_user_model,authenticate
 from rest_framework.response import Response
 from .models import CustomUser
@@ -51,16 +51,29 @@ class Registerview(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=400)
+# class Userview(viewsets.ModelViewSet):
+#     permission_classes = [permissions.IsAuthenticated]
+#     serializer_class = Registerserializer
+#     queryset = User.objects.all()
+
+#     def list(self, request):
+#         queryset=User.objects.all()
+#         serializer = self.serializer_class(queryset, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# views.py
 class Userview(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = Registerserializer
+    serializer_class = UserWithProfileAndPhotosSerializer
     queryset = User.objects.all()
 
     def list(self, request):
-        queryset=User.objects.all()
-        serializer = self.serializer_class(queryset, many=True)
+        queryset = self.queryset
+        serializer = self.serializer_class(queryset, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
+
 class ProfileAPIView(generics.RetrieveUpdateAPIView):
     """
     Handle both profile retrieval and updates

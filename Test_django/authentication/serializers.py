@@ -94,3 +94,16 @@ class PublicUserPhotoSerializer(serializers.ModelSerializer):
         if profile and profile.profile_picture:
             return profile.profile_picture.url
         return None
+
+# serializers.py
+class UserWithProfileAndPhotosSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+    photos = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'username', 'profile', 'photos']
+
+    def get_photos(self, obj):
+        photos = UserPhoto.objects.filter(user=obj).order_by('-created_at')
+        return UserPhotoSerializer(photos, many=True, context=self.context).data
