@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: django-backend
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn Test_django.Test_django.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: Test_django.Test_django.settings
+      - key: DATABASE_URL
+        value: YOUR_POSTGRES_URL
+      - key: SECRET_KEY
+        value: your-secret-key-here
+    plan: free
