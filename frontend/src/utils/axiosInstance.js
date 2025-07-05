@@ -125,7 +125,9 @@ import dayjs from "dayjs";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
-const baseURL = "http://127.0.0.1:8000/api/";  // Added trailing slash
+// const baseURL = "http://127.0.0.1:8000/api/";  // Added trailing slash
+const baseURL = "https://myproject-2-4eg7.onrender.com/api/";
+
 
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
