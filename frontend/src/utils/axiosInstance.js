@@ -126,7 +126,8 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 // const baseURL = "http://127.0.0.1:8000/api/";  // Added trailing slash
-const baseURL = "https://myproject-2-4eg7.onrender.com/api/";
+// const baseURL = "https://myproject-2-4eg7.onrender.com/api/";
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api/";
 
 
 const useAxios = () => {
