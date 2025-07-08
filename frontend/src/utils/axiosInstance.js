@@ -138,7 +138,8 @@ const useAxios = () => {
     headers: { 
       "Content-Type": "application/json",
       Authorization: authTokens?.access ? `Bearer ${authTokens.access}` : undefined
-    }
+    },
+     withCredentials: true,
   });
 
   axiosInstance.interceptors.request.use(async req => {
@@ -192,5 +193,16 @@ const useAxios = () => {
 
   return axiosInstance;
 };
+
+
+
+// Add CSRF token handling
+axiosInstance.interceptors.request.use((config) => {
+  const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
+  if (csrfToken) {
+    config.headers['X-CSRFToken'] = csrfToken;
+  }
+  return config;
+});
 
 export default useAxios;
